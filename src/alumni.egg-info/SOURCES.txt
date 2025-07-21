@@ -7,3 +7,7 @@ src/alumni.egg-info/SOURCES.txt
 src/alumni.egg-info/dependency_links.txt
 src/alumni.egg-info/requires.txt
 src/alumni.egg-info/top_level.txt
+src/app/__init__.py
+src/app/admin_views.py
+src/app/models.py
+src/app/user_views.py

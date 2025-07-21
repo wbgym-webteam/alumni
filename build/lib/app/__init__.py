@@ -1,10 +1,9 @@
-from flask import flaskfrom, Flask, render_template, redirect
-import sqlalchemy
+from flask import flaskfrom flask import render_template, redirect
+from flask_sqlalchemy import 
 from flask_migrate import Migrate
 from dotenv import load_dotenv
 import os
-import path as Path
-import secrets
+
 
 
 env_path = Path(__file__).parent.parent.parent / '.env'
@@ -13,7 +12,7 @@ load_dotenv()
 
 def create_app():
     app = Flask(__name__)
-    db = sqlalchemy.SQLAlchemy(app)
+
 
 
     # Create and configure the app with explicit instance path
@@ -25,7 +24,7 @@ def create_app():
 
 
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{os.path.join(instance_dir, "wbgym.db")}'
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] =
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = flask_migrate
 
     db.init_app(app)
     migrate = Migrate(app, db)
@@ -33,12 +32,11 @@ def create_app():
 
     with app.app_context():
         
-        import user_views
-        import admin_views
+        from .views import views
 
 
-        app.register_blueprint(user_views.user_bp, url_prefix="/")
-        app.register_blueprint(admin_views.admin_bp, url_prefix="/")
+        app.register_blueprint(user_bp, url_prefix="/")
+        app.register_blueprint(admin_bp, url_prefix="/")
 
         # db.drop_all()
         db.create_all()
