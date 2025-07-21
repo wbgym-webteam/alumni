@@ -1,5 +1,5 @@
-from flask import flaskfrom flask import render_template, redirect
-from flask_sqlalchemy import 
+from flask import Flask, render_template, redirect
+from flask_sqlalchemy import *
 from flask_migrate import Migrate
 from dotenv import load_dotenv
 import os
